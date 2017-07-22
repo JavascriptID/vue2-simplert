@@ -15,7 +15,7 @@ var env = process.env.NODE_ENV === 'testing'
 
 var webpackConfig = merge(baseWebpackConfig, {
   entry: {
-    app: './src/main-dist.js'
+    app: './src/simplert.es5.js'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -46,6 +46,9 @@ var webpackConfig = merge(baseWebpackConfig, {
         warnings: false
       },
       sourceMap: false
+    }),
+    new webpack.BannerPlugin({
+      banner: `Vue2-Simplert v.${npm.version}\nIrfan Maulana (https://github.com/mazipan)`
     }),
     new WebpackShellPlugin({
       onBuildStart: ['echo "Starting"']
