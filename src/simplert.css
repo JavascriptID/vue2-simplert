@@ -1,18 +1,11 @@
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -o-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 .simplert {
+  box-sizing: border-box;
   font-size: 14px;
   line-height: 1.15;
+}
+
+.simplert *, .simplert *:before, .simplert *:after {
+  box-sizing: inherit;
 }
 
 .simplert {
@@ -36,6 +29,15 @@ html {
   animation-name: zoomIn;
   animation-duration: .3s;
   animation-fill-mode: both;
+}
+.simplert__x{
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  color: #b3aaaa;
+  font-weight: bold;
+  font-size: 11px;
 }
 .simplert__header {
   padding: 2em 0;
