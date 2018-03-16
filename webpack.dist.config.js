@@ -4,6 +4,8 @@ var npm = require("./package.json")
 const CompressionPlugin = require("compression-webpack-plugin")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
+const SRC = path.resolve(__dirname, "src");
+
 require('es6-promise').polyfill();
 
 module.exports = {
@@ -18,9 +20,10 @@ module.exports = {
     libraryTarget: 'commonjs'
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.json', '.vue'],
     alias: {
-      'vue$': 'vue/dist/vue.common.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': SRC
     }
   },
   devtool: '#source-map',
@@ -40,8 +43,11 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: path.resolve(__dirname, 'node_modules'),
         loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader'
       }
     ]
   },
@@ -54,16 +60,16 @@ module.exports = {
         'NODE_ENV': '"production"'
       }
     }),
+    new webpack.BannerPlugin({
+      banner: `Vue2-Simplert v.${npm.version}`
+    }),
+    new ExtractTextPlugin("simplert.common.css"),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
       sourceMap: false
     }),
-    new webpack.BannerPlugin({
-      banner: `Vue2-Simplert v.${npm.version}`
-    }),
-    new ExtractTextPlugin("simplert.common.css"),
     new CompressionPlugin({
       algorithm: 'gzip'
     })

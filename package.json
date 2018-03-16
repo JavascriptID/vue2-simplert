@@ -1,10 +1,10 @@
 {
   "name": "vue2-simplert",
   "description": "Vue 2 Alert Component (SweetAlert Inspired)",
-  "version": "0.6.1",
+  "version": "0.9.0",
   "license": "MIT",
   "author": "Irfan Maulana (https://github.com/mazipan/)",
-  "homepage": "https://mazipan.github.io/vue2-simplert/",  
+  "homepage": "https://mazipan.github.io/vue2-simplert/",
   "keywords": [
     "vue2 alert",
     "vue2 sweet alert",
@@ -30,56 +30,58 @@
     "build:dist": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "build:commonjs": "cross-env NODE_ENV=production webpack --config webpack.dist.config.js",
     "dist": "npm run build:demo && npm run build:dist && npm run build:commonjs",
-    "test": "./node_modules/.bin/jest --coverage"
+    "test": "./node_modules/.bin/jest --coverage",
+    "docs:serve": "gitbook install && gitbook serve"
   },
   "main": "dist/simplert.umd.js",
   "files": [
     "dist/simplert.umd.js",
     "dist/simplert.umd.js.gz",
     "dist/simplert.umd.js.map",
-
     "dist/simplert.bundle.js",
     "dist/simplert.bundle.js.gz",
     "dist/simplert.bundle.js.map",
-    
     "dist/simplert.common.css",
     "dist/simplert.common.css.gz",
     "dist/simplert.common.css.map",
     "dist/simplert.common.js",
     "dist/simplert.common.js.gz",
     "dist/simplert.common.js.map",
-    
     "src/main-dist.js",
     "src/Simplert.vue",
     "src/simplert.css",
-    
     "src/simplert.es5.js"
   ],
   "devDependencies": {
-    "autoprefixer": "^7.2.2",
+    "autoprefixer": "^7.2.5",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "compression": "^1.7.1",
-    "compression-webpack-plugin": "^1.0.1",
-    "cross-env": "^5.1.1",
-    "css-loader": "^0.28.7",
-    "es6-promise": "^4.1.1",
-    "eslint": "^4.13.0",
-    "eslint-plugin-vue": "3.13.0",
+    "compression-webpack-plugin": "^1.1.3",
+    "cross-env": "^5.1.3",
+    "css-loader": "^0.28.8",
+    "es6-promise": "^4.2.2",
+    "eslint": "^4.15.0",
+    "eslint-plugin-vue": "4.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "gitbook-cli": "2.3.2",
+    "gitbook-plugin-comment": "^1.0.5",
+    "gitbook-plugin-favicon": "0.0.2",
+    "gitbook-plugin-github": "^3.0.0",
+    "gitbook-plugin-prism": "^2.3.0",
     "html-webpack-plugin": "^2.30.1",
-    "jest": "^21.2.1",
-    "jest-vue": "^0.8.2",
+    "jest": "^22.0.6",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "vue": "^2.5.9",
-    "vue-loader": "^13.5.0",
-    "vue-template-compiler": "^2.5.9",
-    "vue-test-utils": "^1.0.0-beta.7",
+    "vue": "^2.5.13",
+    "vue-loader": "^13.7.0",
+    "vue-jest": "^1.4.0",
+    "vue-template-compiler": "^2.5.13",
+    "vue-test-utils": "^1.0.0-beta.11",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7",
+    "webpack-dev-server": "^2.11.0",
     "webpack-merge": "^4.1.1",
     "webpack-shell-plugin": "^0.5.0"
   },
@@ -93,15 +95,20 @@
     "mapCoverage": true,
     "coverageDirectory": "test/coverage",
     "moduleNameMapper": {
-      "^vue$": "vue/dist/vue.common.js"
+      "^vue$": "vue/dist/vue.common.js",
+      "^@/(.*)$": "<rootDir>/src/$1"
     },
     "moduleFileExtensions": [
       "js",
+      "json",
       "vue"
     ],
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue"
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     }
+  },
+  "dependencies": {
+    "vue2-simplert-core": "1.0.3"
   }
 }

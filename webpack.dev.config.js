@@ -2,6 +2,8 @@ var path = require('path');
 var webpack = require('webpack')
 const CompressionPlugin = require("compression-webpack-plugin")
 
+const SRC = path.resolve(__dirname, "src");
+
 require('es6-promise').polyfill();
 
 module.exports = {
@@ -15,21 +17,20 @@ module.exports = {
     jsonpFunction: 'WebpackJsonp'
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.json', '.vue'],
     alias: {
-      'vue$': 'vue/dist/vue.common.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': SRC
     }
   },
   module: {
-    rules: [      
+    rules: [
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
           loaders: {
-            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-            // the "scss" and "sass" values for the lang attribute to the right configs here.
-            // other preprocessors should work out of the box, no loader config like this necessary.
+            'css': 'vue-style-loader!css-loader',
             'scss': 'vue-style-loader!css-loader!sass-loader',
             'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
           }
@@ -38,8 +39,11 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: path.resolve(__dirname, 'node_modules'),
         loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader'
       }
     ]
   },
